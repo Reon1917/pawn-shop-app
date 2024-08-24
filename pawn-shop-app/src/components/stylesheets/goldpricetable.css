@@ -1,0 +1,22 @@
+table {
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+  }
+  
+  th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: green;
+  }
+  
+  tr:hover {
+    background-color: black;
+  }
