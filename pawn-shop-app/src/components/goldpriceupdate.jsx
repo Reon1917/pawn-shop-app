@@ -4,11 +4,24 @@ import './stylesheets/goldpriceupdate.css'; // Ensure the path is correct
 function GoldPriceUpdateModal({ isOpen, onClose, onUpdate }) {
   const [goldQuality, setGoldQuality] = useState('18');
   const [newPrice, setNewPrice] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onUpdate(goldQuality, newPrice);
-    onClose();
+    let hasError = false;
+    let errorMessage = '';
+
+    if (newPrice <= 0) {
+      errorMessage = newPrice === 0 ? 'Please enter a value' : 'Please enter a valid value';
+      hasError = true;
+    }
+
+    setError(errorMessage);
+
+    if (!hasError) {
+      onUpdate(goldQuality, newPrice);
+      onClose();
+    }
   };
 
   if (!isOpen) return null;
@@ -38,6 +51,7 @@ function GoldPriceUpdateModal({ isOpen, onClose, onUpdate }) {
               value={newPrice}
               onChange={(e) => setNewPrice(e.target.value)}
             />
+            {error && <p style={{ color: 'red' }}>{error}</p>}
           </div>
           <button type="submit">Update</button>
           <button type="button" onClick={onClose}>Cancel</button>

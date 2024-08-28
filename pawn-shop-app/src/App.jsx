@@ -1,18 +1,23 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './styles/App.css';
-import GoldInfoInput from './components/inputForm.jsx'; // Import the GoldInfoInput component
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/navbar';
+import LoanEstimation from './components/inputForm';
+import PawnSlipRegistration from './components/slipRegister';
+import InterestCalculation from './components/interestCalculation';
+import MonthlyReport from './components/monthlyReport';
 
-function App() {
-  const [count, setCount] = useState(0);
-
+const App = () => {
   return (
-    <>
-      
-      <GoldInfoInput /> {/* Include the GoldInfoInput component */}
-    </>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<LoanEstimation />} />
+        <Route path="/pawn-slip-registration" element={<PawnSlipRegistration />} />
+        <Route path="/interest-calculation" element={<InterestCalculation />} />
+        <Route path="/monthly-report" element={<MonthlyReport />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

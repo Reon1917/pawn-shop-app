@@ -10,6 +10,7 @@ function GoldInfoInput() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [updatedPrices, setUpdatedPrices] = useState([]);
   const [possibleLoan, setPossibleLoan] = useState(null);
+  const [error, setError] = useState({ goldWeight: '', goldPrice: '' });
 
   useEffect(() => {
     const purity = `${goldQuality}K`;
@@ -21,9 +22,26 @@ function GoldInfoInput() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const loanAmount = goldWeight * goldPrice;
-    setPossibleLoan(loanAmount);
-    console.log(`Gold Quality: ${goldQuality}, Gold Weight: ${goldWeight} grams, Gold Price: ${goldPrice}, Possible Loan: ${loanAmount}`);
+    let hasError = false;
+    const newError = { goldWeight: '', goldPrice: '' };
+
+    if (goldWeight <= 0) {
+      newError.goldWeight = goldWeight === 0 ? 'Please enter a value' : 'Please enter a valid value';
+      hasError = true;
+    }
+
+    if (goldPrice <= 0) {
+      newError.goldPrice = goldPrice === 0 ? 'Please enter a value' : 'Please enter a valid value';
+      hasError = true;
+    }
+
+    setError(newError);
+
+    if (!hasError) {
+      const loanAmount = goldWeight * goldPrice;
+      setPossibleLoan(loanAmount);
+      console.log(`Gold Quality: ${goldQuality}, Gold Weight: ${goldWeight} grams, Gold Price: ${goldPrice}, Possible Loan: ${loanAmount}`);
+    }
   };
 
   const handleUpdate = (quality, newPrice) => {
@@ -58,10 +76,12 @@ function GoldInfoInput() {
             value={goldWeight}
             onChange={(e) => setGoldWeight(e.target.value)}
           />
+          {error.goldWeight && <p style={{ color: 'red' }}>{error.goldWeight}</p>}
         </div>
         <div>
           <label htmlFor="goldPrice">Gold Price (THB per gram):</label>
           <span id="goldPrice">{goldPrice}</span>
+          {error.goldPrice && <p style={{ color: 'red' }}>{error.goldPrice}</p>}
         </div>
         <button type="submit">Submit</button>
         {possibleLoan !== null && (
