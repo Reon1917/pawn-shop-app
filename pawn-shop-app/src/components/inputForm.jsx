@@ -53,7 +53,7 @@ function GoldInfoInput() {
     <div style={{ display: 'flex' }}>
       <div style={{ marginRight: '20px' }}>
         <GoldPriceTable updatedPrices={updatedPrices} />
-        <button onClick={() => setIsModalOpen(true)}>Gold Price Update</button>
+        <button onClick={() => setIsModalOpen(true)}>Update Gold Price</button>
       </div>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <div>

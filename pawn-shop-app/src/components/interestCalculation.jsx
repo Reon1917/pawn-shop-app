@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import registerData from '../data/register.json'; // Ensure the path is correct
 import './stylesheets/interestCalculation.css'; // Import the CSS file
 
@@ -8,10 +8,17 @@ const InterestCalculation = () => {
   const [loanAmount, setLoanAmount] = useState('');
   const [months, setMonths] = useState('');
   const [error, setError] = useState('');
-  const [loanPaid, setLoanPaid] = useState(false);
+  const [pawnItems, setPawnItems] = useState(() => {
+    const savedItems = localStorage.getItem('pawnItems');
+    return savedItems ? JSON.parse(savedItems) : registerData.pawnItems;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('pawnItems', JSON.stringify(pawnItems));
+  }, [pawnItems]);
 
   const handleCalculate = () => {
-    const pawnItem = registerData.pawnItems.find(item => item.pawnID === pawnID);
+    const pawnItem = pawnItems.find(item => item.pawnID === pawnID);
 
     if (!pawnItem) {
       setError('Pawn ID is not in the JSON file');
@@ -49,12 +56,17 @@ const InterestCalculation = () => {
     setLoanAmount(pawnItem.loanAmount);
     setMonths(Math.ceil(diffMonths * 2) / 2);
     setError('');
-    setLoanPaid(pawnItem.loanPaid);
   };
 
   const handleLoanPaid = () => {
-    setLoanPaid(true);
+    setPawnItems(prevItems =>
+      prevItems.map(item =>
+        item.pawnID === pawnID ? { ...item, loanPaid: true } : item
+      )
+    );
   };
+
+  const pawnItem = pawnItems.find(item => item.pawnID === pawnID);
 
   return (
     <div className="card">
@@ -78,7 +90,7 @@ const InterestCalculation = () => {
           <p>Total Interest: {loanAmount * interestRate * months} THB</p>
           <p>Total Payment: {loanAmount + (loanAmount * interestRate * months)} THB</p>
           <button onClick={handleLoanPaid}>Loan Paid</button>
-          {loanPaid && <p style={{ color: 'green' }}>Loan has been marked as paid.</p>}
+          {pawnItem && pawnItem.loanPaid && <p style={{ color: 'green' }}>Loan has been marked as paid.</p>}
         </div>
       )}
     </div>
