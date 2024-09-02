@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .table-container, .form-container {
+    width: 400px; /* Adjust the width as needed */
+    padding: 20px;
+    border: 1px solid whitesmoke;
+    border-radius: 8px;
+    background-color: black;
+  }
+  
+  .loan-amount {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    background-color: black;
+    text-align: center;
+  }
+  
+  .loan-amount h3 {
+    color: #4CAF50;
+  }
+  
+  .loan-amount p {
+    font-size: 1.5em;
+    font-weight: bold;
+  }

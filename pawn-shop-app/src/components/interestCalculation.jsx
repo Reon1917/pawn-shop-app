@@ -18,10 +18,10 @@ const InterestCalculation = () => {
   }, [pawnItems]);
 
   const handleCalculate = () => {
-    const pawnItem = pawnItems.find(item => item.pawnID === pawnID);
+    const pawnItem = pawnItems.find((item) => item.pawnID === pawnID);
 
     if (!pawnItem) {
-      setError('Pawn ID is not in the JSON file');
+      setError('Pawn ID does not exist');
       return;
     }
 
@@ -30,10 +30,28 @@ const InterestCalculation = () => {
       return;
     }
 
-    const today = new Date();
+    // const today = new Date();
+    const today = new Date('2024-07-26'); // For testing purposes
     const pawnDate = new Date(pawnItem.date);
-    const diffTime = Math.abs(today - pawnDate);
-    const diffMonths = diffTime / (1000 * 60 * 60 * 24 * 30.44); // Approximate month calculation
+
+    const diffTime = today - pawnDate; // Difference in milliseconds
+    const diffDays = diffTime / (1000 * 60 * 60 * 24); // Convert to days
+
+    let diffMonths;
+    if (diffDays < 30.44) {
+      // If within one month, consider it as 1 month
+      diffMonths = 1;
+    } else {
+      const fullMonths = Math.floor(diffDays / 30.44); // Calculate full months
+      const remainingDays = diffDays % 30.44; // Days remaining after full months
+
+      if (remainingDays <= 7) {
+        // If within the first 7 days of the new month
+        diffMonths = fullMonths + 0.5;
+      } else {
+        diffMonths = fullMonths + 1;
+      }
+    }
 
     if (diffMonths > 5) {
       setError('Loan period is longer than 5 months');
@@ -49,12 +67,13 @@ const InterestCalculation = () => {
       rate = 0.03;
     }
 
-    const interest = pawnItem.loanAmount * rate * Math.ceil(diffMonths * 2) / 2; // Round up to nearest half month
-    const totalPayment = pawnItem.loanAmount + interest;
+    const interest = (pawnItem.loanAmount * rate * diffMonths).toFixed(2); // Calculate interest
+    const totalPayment = (parseFloat(pawnItem.loanAmount) + parseFloat(interest)).toFixed(2);
 
     setInterestRate(rate);
     setLoanAmount(pawnItem.loanAmount);
-    setMonths(Math.ceil(diffMonths * 2) / 2);
+    setMonths(diffMonths);
+    setTotalPayment(totalPayment);
     setError('');
   };
 
@@ -87,7 +106,7 @@ const InterestCalculation = () => {
           <p>Loan Amount: {loanAmount} THB</p>
           <p>Interest Rate: <input type="text" value={interestRate} onChange={(e) => setInterestRate(e.target.value)} /></p>
           <p>Months: {months}</p>
-          <p>Total Interest: {loanAmount * interestRate * months} THB</p>
+          <p>Total Interest: {(loanAmount * interestRate * months).toFixed(2)} THB</p>
           <p>Total Payment: {loanAmount + (loanAmount * interestRate * months)} THB</p>
           <button onClick={handleLoanPaid}>Loan Paid</button>
           {pawnItem && pawnItem.loanPaid && <p style={{ color: 'green' }}>Loan has been marked as paid.</p>}

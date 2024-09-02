@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import goldPricesData from '../data/gold-price.json';
 import './stylesheets/goldpricetable.css'; // Ensure the path is correct
 
 function GoldPriceTable({ updatedPrices }) {
   const [goldPrices, setGoldPrices] = useState(goldPricesData.gold_prices);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (updatedPrices) {
       const newGoldPrices = goldPrices.map(price => {
         const updatedPrice = updatedPrices.find(up => up.purity === price.purity);

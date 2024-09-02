@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import GoldPriceTable from './goldpricetable'; // Ensure the path is correct
 import GoldPriceUpdateModal from '../components/goldpriceupdate'; // Ensure the path is correct
 import goldPrices from '../data/gold-price.json'; // Ensure the path is correct
+import './stylesheets/inputForm.css'; // Ensure the path is correct
 
 function GoldInfoInput() {
   const [goldQuality, setGoldQuality] = useState('18');
@@ -50,52 +51,54 @@ function GoldInfoInput() {
   };
 
   return (
-    <div style={{ display: 'flex' }}>
-      <div style={{ marginRight: '20px' }}>
-        <GoldPriceTable updatedPrices={updatedPrices} />
-        <button onClick={() => setIsModalOpen(true)}>Update Gold Price</button>
-      </div>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        <div>
-          <label htmlFor="goldQuality">Gold Quality:</label>
-          <select
-            id="goldQuality"
-            value={goldQuality}
-            onChange={(e) => setGoldQuality(e.target.value)}
-          >
-            <option value="18">18 Karat</option>
-            <option value="22">22 Karat</option>
-            <option value="24">24 Karat</option>
-          </select>
+    <div className="container">
+      <div className="content">
+        <div className="table-container">
+          <GoldPriceTable updatedPrices={updatedPrices} />
+          <button onClick={() => setIsModalOpen(true)}>Update Gold Price</button>
         </div>
-        <div>
-          <label htmlFor="goldWeight">Gold Weight (grams):</label>
-          <input
-            type="number"
-            id="goldWeight"
-            value={goldWeight}
-            onChange={(e) => setGoldWeight(e.target.value)}
-          />
-          {error.goldWeight && <p style={{ color: 'red' }}>{error.goldWeight}</p>}
-        </div>
-        <div>
-          <label htmlFor="goldPrice">Gold Price (THB per gram):</label>
-          <span id="goldPrice">{goldPrice}</span>
-          {error.goldPrice && <p style={{ color: 'red' }}>{error.goldPrice}</p>}
-        </div>
-        <button type="submit">Submit</button>
-        {possibleLoan !== null && (
-          <div style={{ marginTop: '20px', padding: '10px', border: '2px solid #4CAF50', borderRadius: '5px', backgroundColor: 'black', textAlign: 'center' }}>
-            <h3 style={{ color: '#4CAF50' }}>The shop can offer up to:</h3>
-            <p style={{ fontSize: '1.5em', fontWeight: 'bold' }}>{possibleLoan.toFixed(2)} THB</p>
+        <form onSubmit={handleSubmit} className="form-container">
+          <div>
+            <label htmlFor="goldQuality">Gold Quality:</label>
+            <select
+              id="goldQuality"
+              value={goldQuality}
+              onChange={(e) => setGoldQuality(e.target.value)}
+            >
+              <option value="18">18 Karat</option>
+              <option value="22">22 Karat</option>
+              <option value="24">24 Karat</option>
+            </select>
           </div>
-        )}
-      </form>
-      <GoldPriceUpdateModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onUpdate={handleUpdate}
-      />
+          <div>
+            <label htmlFor="goldWeight">Gold Weight (grams):</label>
+            <input
+              type="number"
+              id="goldWeight"
+              value={goldWeight}
+              onChange={(e) => setGoldWeight(e.target.value)}
+            />
+            {error.goldWeight && <p style={{ color: 'red' }}>{error.goldWeight}</p>}
+          </div>
+          <div>
+            <label htmlFor="goldPrice">Gold Price (THB per gram):</label>
+            <span id="goldPrice">{goldPrice}</span>
+            {error.goldPrice && <p style={{ color: 'red' }}>{error.goldPrice}</p>}
+          </div>
+          <button type="submit">Submit</button>
+          {possibleLoan !== null && (
+            <div className="loan-amount">
+              <h3>The shop can offer up to:</h3>
+              <p>{possibleLoan.toFixed(2)} THB</p>
+            </div>
+          )}
+        </form>
+        <GoldPriceUpdateModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onUpdate={handleUpdate}
+        />
+      </div>
     </div>
   );
 }

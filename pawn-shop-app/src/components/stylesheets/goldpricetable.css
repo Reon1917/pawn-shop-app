@@ -1,22 +1,22 @@
 table {
-    justify-content: left;
-    align-items: center;
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 18px;
-    text-align: left;
-  }
-  
-  th, td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #007AFF;
-  }
-  
-  tr:hover {
-    background-color: black;
-  }
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: black;
+}
+
+th, td {
+  border: 1px solid white;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: black;
+  font-weight: bold;
+}
+
+
+tr:hover {
+  background-color: gray;
+}
