@@ -1,7 +1,7 @@
 nav {
     background-color: black;
     overflow: hidden;
-    max-width: ;
+    
   }
   
   nav ul {
@@ -23,5 +23,6 @@ nav {
   }
   
   nav ul li a:hover {
-    background-color: gray;
+    background-color: rgb(255, 255, 255);
+    color: black;
   }
