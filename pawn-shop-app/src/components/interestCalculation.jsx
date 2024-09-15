@@ -55,8 +55,7 @@ const InterestCalculation = () => {
     // Calculate the number of months based on full months and remaining days
     let diffMonths;
   
-    if (diffDays === 0) {
-      // If pawn date is the same as today, count it as 1 month
+    if (diffDays <= 30) {
       diffMonths = 1;
     } else {
       diffMonths = fullMonths;
