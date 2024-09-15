@@ -4,12 +4,12 @@
         "pawnID": "PAWN023",
         "goldAmount": 7.78,
         "purity": 24,
-        "date": "2024-01-01",
+        "date": "2024-04-12",
         "customerName": "Thet Myat Noe Thwin",
         "address": {
           "city": "Samut Prakarn"
         },
-        "note": "The customer paid 10000THB before with pawnID PAWN009. The customer made some or partial payments with pawnID PAWN014.",
+        "note": "expired pwan-slip. Over 5 months. Just expired.",
         "loanPaid": false,
         "loanAmount": 16338
       },
@@ -17,12 +17,12 @@
         "pawnID": "PAWN024",
         "goldAmount": 15.33,
         "purity": 22,
-        "date": "2024-02-15",
+        "date": "2024-04-12",
         "customerName": "Darun",
         "address": {
           "city": "Los Angeles"
         },
-        "note": "The customer paid 7500THB before with pawnID PAWN014. The customer made some or partial payments with pawnID PAWN014.",
+        "note": "expired pawn slip. Just expired. Paid",
         "loanPaid": true,
         "loanAmount": 29127
       },
@@ -30,12 +30,12 @@
         "pawnID": "PAWN025",
         "goldAmount": 10.5,
         "purity": 18,
-        "date": "2024-08-25",
+        "date": "2024-05-09",
         "customerName": "Sukanya Chaiyathip",
         "address": {
           "city": "Bangkok"
         },
-        "note": "First time pawning gold items.",
+        "note": "4.5 months, 124th day",
         "loanPaid": false,
         "loanAmount": 16800
       },
@@ -43,12 +43,12 @@
         "pawnID": "PAWN026",
         "goldAmount": 12.7,
         "purity": 24,
-        "date": "2024-05-22",
+        "date": "2024-07-04",
         "customerName": "Arun Patel",
         "address": {
           "city": "Mumbai"
         },
-        "note": "Pawned for daughter's wedding.",
+        "note": "3 months, 68th days",
         "loanPaid": false,
         "loanAmount": 26670
       },
@@ -56,12 +56,12 @@
         "pawnID": "PAWN027",
         "goldAmount": 5.2,
         "purity": 22,
-        "date": "2024-04-05",
+        "date": "2024-07-05",
         "customerName": "Miguel Hernandez",
         "address": {
           "city": "Madrid"
         },
-        "note": "Paid 3000THB, remaining balance due. The customer made some or partial payments with pawnID PAWN014.",
+        "note": "2.5 months, 67th day",
         "loanPaid": false,
         "loanAmount": 9880
       },
@@ -69,25 +69,25 @@
         "pawnID": "PAWN028",
         "goldAmount": 8.9,
         "purity": 18,
-        "date": "2024-04-20",
+        "date": "2024-07-22",
         "customerName": "Linh Tran",
         "address": {
           "city": "Ho Chi Minh City"
         },
-        "note": "Repeat customer, previous pawnID PAWN017. The customer made some or partial payments with pawnID PAWN014.",
-        "loanPaid": true,
+        "note": "2 months, 50th day",
+        "loanPaid": false,
         "loanAmount": 14240
       },
       {
         "pawnID": "PAWN029",
         "goldAmount": 20.0,
         "purity": 24,
-        "date": "2024-05-03",
+        "date": "2024-08-25",
         "customerName": "Tomoko Sato",
         "address": {
           "city": "Tokyo"
         },
-        "note": "Gold chain and ring.",
+        "note": "one month, within 30 days",
         "loanPaid": false,
         "loanAmount": 42000
       },
@@ -95,12 +95,12 @@
         "pawnID": "PAWN030",
         "goldAmount": 9.6,
         "purity": 22,
-        "date": "2024-05-18",
+        "date": "2024-09-10",
         "customerName": "James Smith",
         "address": {
           "city": "New York"
         },
-        "note": "Customer has an existing loan with pawnID PAWN018. The customer made some or partial payments with pawnID PAWN014.",
+        "note": "one month. just pawned today",
         "loanPaid": false,
         "loanAmount": 18240
       },
@@ -108,12 +108,12 @@
         "pawnID": "PAWN031",
         "goldAmount": 14.4,
         "purity": 18,
-        "date": "2024-06-01",
+        "date": "2024-09-15",
         "customerName": "Sara Johnson",
         "address": {
           "city": "London"
         },
-        "note": "Paid 5000THB upfront, remaining balance pending. The customer made some or partial payments with pawnID PAWN014.",
+        "note": "pawn date haven't even arrived yet!!",
         "loanPaid": false,
         "loanAmount": 23040
       },
@@ -126,9 +126,9 @@
         "address": {
           "city": "Dubai"
         },
-        "note": "Regular customer with good payment history.",
-        "loanPaid": true,
-        "loanAmount": 34020
+        "note": "this guy took a minus loan!!",
+        "loanPaid": false,
+        "loanAmount": -1000
       },
       {
         "pawnID": "PAWN033",
@@ -139,9 +139,9 @@
         "address": {
           "city": "Rome"
         },
-        "note": "Pawning for emergency medical expenses.",
+        "note": "loanAmount < 5000 - 0.04",
         "loanPaid": false,
-        "loanAmount": 21090
+        "loanAmount": 2100
       },
       {
         "pawnID": "PAWN034",
@@ -152,9 +152,35 @@
         "address": {
           "city": "Warsaw"
         },
-        "note": "Partial payment made, 2500THB remaining. The customer made some or partial payments with pawnID PAWN014.",
+        "note": "loanAmount < 10000 - 0.035",
         "loanPaid": false,
-        "loanAmount": 21600
+        "loanAmount": 7400
+      },
+      {
+        "pawnID": "PAWN035",
+        "goldAmount": 21.5,
+        "purity": 24,
+        "date": "2024-08-22",
+        "customerName": "Mario",
+        "address": {
+          "city": "UwU"
+        },
+        "note": "loanAmount >= 10000 - 0.03",
+        "loanPaid": false,
+        "loanAmount": 32200
+      },
+      {
+        "pawnID": "PAWN036",
+        "goldAmount": 1.5,
+        "purity": 22,
+        "date": "2024-05-22",
+        "customerName": "Luigi",
+        "address": {
+          "city": "UwU"
+        },
+        "note": "already paid",
+        "loanPaid": true,
+        "loanAmount": 3200
       }
     ]
   }

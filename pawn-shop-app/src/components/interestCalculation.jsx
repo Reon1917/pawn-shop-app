@@ -19,45 +19,64 @@ const InterestCalculation = () => {
 
   const handleCalculate = () => {
     const pawnItem = pawnItems.find((item) => item.pawnID === pawnID);
-
+  
     if (!pawnItem) {
       setError('Pawn ID does not exist');
       return;
     }
-
+  
     if (pawnItem.loanPaid) {
       setError('Loan is already paid');
       return;
     }
-
+  
+    if (pawnItem.loanAmount < 0) {
+      setError('How did you take a negative loan?!!');
+      return;
+    }
+  
     // const today = new Date();
-    const today = new Date('2024-07-26'); // For testing purposes
+    const today = new Date('2024-09-10'); // For testing purposes
     const pawnDate = new Date(pawnItem.date);
-
+    console.log(today, pawnDate);
+  
     const diffTime = today - pawnDate; // Difference in milliseconds
     const diffDays = diffTime / (1000 * 60 * 60 * 24); // Convert to days
-
+  
+    if (diffTime < 0) {
+      setError("Pawn date haven't even arrived yet!!");
+      return;
+    }
+  
+    // Calculate full months and remaining days
+    const fullMonths = Math.floor(diffDays / 30); // Number of complete 30-day periods
+    const remainingDays = diffDays % 30; // Days left after counting complete months
+  
+    // Calculate the number of months based on full months and remaining days
     let diffMonths;
-    if (diffDays < 30.44) {
-      // If within one month, consider it as 1 month
+  
+    if (diffDays === 0) {
+      // If pawn date is the same as today, count it as 1 month
       diffMonths = 1;
     } else {
-      const fullMonths = Math.floor(diffDays / 30.44); // Calculate full months
-      const remainingDays = diffDays % 30.44; // Days remaining after full months
-
-      if (remainingDays <= 7) {
-        // If within the first 7 days of the new month
-        diffMonths = fullMonths + 0.5;
-      } else {
-        diffMonths = fullMonths + 1;
+      diffMonths = fullMonths;
+  
+      if (remainingDays > 0) {
+        if (remainingDays <= 7) {
+          diffMonths += 0.5;
+        } else {
+          diffMonths += 1;
+        }
       }
     }
-
+  
+    // Ensure the calculated months do not exceed 5 months
     if (diffMonths > 5) {
       setError('Loan period is longer than 5 months');
       return;
     }
-
+  
+    // Determine the interest rate based on loan amount
     let rate;
     if (pawnItem.loanAmount < 5000) {
       rate = 0.04;
@@ -66,14 +85,14 @@ const InterestCalculation = () => {
     } else {
       rate = 0.03;
     }
-
-    const interest = (pawnItem.loanAmount * rate * diffMonths).toFixed(2); // Calculate interest
+  
+    // Calculate interest and total payment
+    const interest = (pawnItem.loanAmount * rate * diffMonths).toFixed(2);
     const totalPayment = (parseFloat(pawnItem.loanAmount) + parseFloat(interest)).toFixed(2);
-
+  
     setInterestRate(rate);
     setLoanAmount(pawnItem.loanAmount);
     setMonths(diffMonths);
-    setTotalPayment(totalPayment);
     setError('');
   };
 
