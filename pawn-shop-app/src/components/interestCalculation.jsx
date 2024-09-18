@@ -71,7 +71,7 @@ const InterestCalculation = () => {
   
     // Ensure the calculated months do not exceed 5 months
     if (diffMonths > 5) {
-      setError('Loan period is longer than 5 months');
+      setError('The pawn slip is already expired');
       return;
     }
   

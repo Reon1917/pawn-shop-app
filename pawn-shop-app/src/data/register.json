@@ -144,19 +144,6 @@
         "loanAmount": 2100
       },
       {
-        "pawnID": "PAWN037",
-        "goldAmount": 1.5,
-        "purity": 22,
-        "date": "2024-07-12",
-        "customerName": "Peach",
-        "address": {
-          "city": "UwU"
-        },
-        "note": "60 days",
-        "loanPaid": false,
-        "loanAmount": 3200
-      },
-      {
         "pawnID": "PAWN034",
         "goldAmount": 13.5,
         "purity": 18,
