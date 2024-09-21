@@ -8,7 +8,7 @@ import MonthlyReport from './components/monthlyReport';
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/pawn-shop-app">
       <Navbar />
       <Routes>
         <Route path="/" element={<LoanEstimation />} />
